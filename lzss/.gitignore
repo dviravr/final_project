@@ -1,0 +1,17 @@
+*.diff
+*.patch
+*.orig
+*.rej
+
+*~
+*.a
+*.lo
+*.o
+*.dylib
+
+*.gcda
+*.gcno
+*.gcov
+
+/text
+

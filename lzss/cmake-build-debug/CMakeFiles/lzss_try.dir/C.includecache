@@ -1,0 +1,80 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/gzguts.h
+stdio.h
+-
+zlib.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zlib.h
+string.h
+-
+stdlib.h
+-
+limits.h
+-
+fcntl.h
+-
+stddef.h
+-
+io.h
+-
+windows.h
+-
+errno.h
+-
+
+/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zconf.h
+stddef.h
+-
+windows.h
+-
+limits.h
+-
+sys/types.h
+-
+stdarg.h
+-
+stddef.h
+-
+unistd.h
+-
+unixio.h
+-
+
+/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zlib.h
+zconf.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zconf.h
+
+/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zutil.c
+zutil.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zutil.h
+gzguts.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/gzguts.h
+stdlib.h
+-
+
+/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zutil.h
+zlib.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zlib.h
+stddef.h
+-
+string.h
+-
+stdlib.h
+-
+alloc.h
+-
+malloc.h
+-
+malloc.h
+-
+unix.h
+-
+stdio.h
+-
+
