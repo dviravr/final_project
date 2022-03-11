@@ -1,0 +1,1 @@
+/usr/bin/gcc -g   CMakeFiles/lzss_project.dir/main.c.o CMakeFiles/lzss_project.dir/lzss.c.o CMakeFiles/lzss_project.dir/list.c.o CMakeFiles/lzss_project.dir/bitfile.c.o  -o lzss_project 
