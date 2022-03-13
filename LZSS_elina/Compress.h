@@ -23,9 +23,17 @@
 //
 // Algorithm ID				4 bytes
 // Revision ID				1 byte
-// Total UnCompressed Size	4 bytes (1 ulong)
+// Total UnCompressed Size	4 bytes (1 u_long)
 // Compressed Data			nn bytes (16 bit aligned)
 // 
+
+
+
+#include <cstring>
+#include <iostream>
+#define _MAX_PATH 260
+
+
 
 
 // Generic defines (same accross multiple Compressors, LZSS, LZP, etc)
@@ -59,7 +67,7 @@
 
 typedef struct HHash
 {
-	ulong	nPos;								// ABSOLUTE (non-ANDed) position in data stream
+	u_long	nPos;								// ABSOLUTE (non-ANDed) position in data stream
 	struct 	HHash *lpNext;					// Next entry in linked list or NULL
 	struct	HHash *lpPrev;
 
@@ -89,7 +97,7 @@ typedef struct HHash
 
 typedef struct HHuffmanNode
 {
-	ulong	nFrequency;							// Frequency value
+	u_long	nFrequency;							// Frequency value
 	bool	bSearchMe;
 	uint	nParent;
 	uint	nChildLeft;							// Left child node or NULL
@@ -101,13 +109,13 @@ typedef struct HHuffmanNode
 typedef struct HHuffmanOutput
 {
 	uint	nNumBits;							// Code length 
-	ulong	nCode;								// Code (max 32bits)
+	u_long	nCode;								// Code (max 32bits)
 } _HHuffmanOutput;
 
 
 
 // Monitor function declaration
-typedef int (*MMonitorProc)(ulong nBytesIn, ulong nBytesOut, uint nPercentComplete);
+typedef int (*MMonitorProc)(u_long nBytesIn, u_long nBytesOut, uint nPercentComplete);
 
 
 
@@ -124,12 +132,12 @@ public:
 	void	SetOutputType(uint nOutput) { m_nOutputType = nOutput; }
 	void	SetInputFile(const char *szSrc) { strcpy(m_szSrcFile, szSrc); }
 	void	SetOutputFile(const char *szDst) { strcpy(m_szDstFile, szDst); }
-	void	SetInputBuffer(u_char *bBuf, ulong nSize) { m_bUserData = bBuf; m_nDataSize = nSize; }
+	void	SetInputBuffer(u_char *bBuf, u_long nSize) { m_bUserData = bBuf; m_nDataSize = nSize; }
 	void	SetOutputBuffer(u_char *bBuf) { m_bUserCompData = bBuf; }
 	void	SetCompressionLevel(uint nCompressionLevel);	// Set the hash chain limit
 	void	SetMonitorCallback(MMonitorProc lpfnMonitor) { m_lpfnMonitor = lpfnMonitor; }
 	
-	//ulong	GetCompressedSize(void) { return m_nUserCompPos; }
+	//u_long	GetCompressedSize(void) { return m_nUserCompPos; }
 
 	// Monitor functions
 	uint	GetPercentComplete(void) { return ((uint)(((double)m_nUserDataPos/(double)m_nDataSize) * 100.0)); }
@@ -138,11 +146,11 @@ private:
 	// User supplied buffers and counters
 	u_char	*m_bUserData;						// When Compressing from memory this is the user input buffer
 	u_char	*m_bUserCompData;					// When Compressing to memory this is the user output buffer
-	ulong	m_nUserDataPos;						// Position in user unCompressed stream (also used for info)
-	ulong	m_nUserCompPos;						// Position in user Compressed stream (also used for info)
+	u_long	m_nUserDataPos;						// Position in user unCompressed stream (also used for info)
+	u_long	m_nUserCompPos;						// Position in user Compressed stream (also used for info)
 
 	// Master variables
-	ulong	m_nDataSize;						// TOTAL file unCompressed size
+	u_long	m_nDataSize;						// TOTAL file unCompressed size
 
 	uint	m_nInputType, m_nOutputType;		// File or memory output and input
 
@@ -151,20 +159,20 @@ private:
 	char	m_szDstFile[_MAX_PATH+1];
 
 	u_char	*m_bData;
-	ulong	m_nDataPos;							// Position in input stream
-	ulong	m_nLookAheadSize;					// How "lookahead" data is available
-	ulong	m_nDataReadPos;						// Where new data should be read into
+	u_long	m_nDataPos;							// Position in input stream
+	u_long	m_nLookAheadSize;					// How "lookahead" data is available
+	u_long	m_nDataReadPos;						// Where new data should be read into
 
 	u_char	*m_bComp;
-	ulong	m_nCompPos;							// Temp position holder for internal Compressed data buffer
+	u_long	m_nCompPos;							// Temp position holder for internal Compressed data buffer
 
 
 	// Misc
 	bool	m_bAbortRequested;
 
 	// Temporary variables used for the bit operations
-	ulong	m_nCompressedLong;					// Compressed stream temporary 32bit value
-	USHORT	m_nCompressedBitsFree;				// Number of bits unused in temporary value
+	u_long	m_nCompressedLong;					// Compressed stream temporary 32bit value
+	u_short	m_nCompressedBitsFree;				// Number of bits unused in temporary value
 
 	// Hash table related variables
 	uint	m_nHashChainLimit;					// The max length of each hash chain
@@ -179,29 +187,29 @@ private:
 	// Huffman variables
 	struct	HHuffmanNode *m_HuffmanLiteralTree;		// The huffman literal/len tree
 	struct	HHuffmanOutput *m_HuffmanLiteralOutput;	// Output buffer for chars
-	ulong	m_nHuffmanLiteralsLeft;				// Number of literals before huffman regenerated
+	u_long	m_nHuffmanLiteralsLeft;				// Number of literals before huffman regenerated
 	bool	m_bHuffmanLiteralFullyActive;
-	ulong	m_nHuffmanLiteralIncrement;
+	u_long	m_nHuffmanLiteralIncrement;
 		
 	struct	HHuffmanNode *m_HuffmanOffsetTree;		// The huffman offset tree
 	struct	HHuffmanOutput *m_HuffmanOffsetOutput;	// Output buffer for chars
-	ulong	m_nHuffmanOffsetsLeft;				// Number of literals before huffman regenerated
+	u_long	m_nHuffmanOffsetsLeft;				// Number of literals before huffman regenerated
 	bool	m_bHuffmanOffsetFullyActive;
-	ulong	m_nHuffmanOffsetIncrement;
+	u_long	m_nHuffmanOffsetIncrement;
 
 	// Monitor variables and related
 	MMonitorProc m_lpfnMonitor;				// The monitor callback function (or NULL)
 
 
 	// Functions
-	ulong		GetFileSize(const char *szFile);
+	u_long		GetFileSize(const char *szFile);
 	int			AllocMem(void);
 	void		FreeMem(void);
 	inline void	WriteUserCompData(void);		// Write Compressed data to file/mem
 	inline void	ReadUserData(void);				// Read data from file or memory
 
 	int		CompressLoop(void);					// The main Compression loop
-	void	FindMatches(ulong nInitialDataPos, ulong &nOffset, uint &nLen, uint nBestLen);	// Searches for pattern matches
+	void	FindMatches(u_long nInitialDataPos, u_long &nOffset, uint &nLen, uint nBestLen);	// Searches for pattern matches
 
 
 	// Bit operation functions

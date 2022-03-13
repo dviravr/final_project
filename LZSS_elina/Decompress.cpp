@@ -6,15 +6,15 @@
 
 #include <stdio.h>
 #include <math.h>
-#include <windows.h>
+// #include <windows.h>
 #include "Decompress.h"
-
+#include <string.h>
 
 ///////////////////////////////////////////////////////////////////////////////
 // GetDecompressedSize()
 ///////////////////////////////////////////////////////////////////////////////
 
-/*ulong Decompress::GetDecompressedSize(void)
+/*u_long Decompress::GetDecompressedSize(void)
 {
 	int		nRes;
 
@@ -171,7 +171,7 @@ int Decompress::DDecompress(void)
 // input (9 bytes)
 ///////////////////////////////////////////////////////////////////////////////
 
-int Decompress::ReadUserCompHeader(ulong &nSize)
+int Decompress::ReadUserCompHeader(u_long &nSize)
 {
 	u_char	bBuffer[8];
 
@@ -186,10 +186,10 @@ int Decompress::ReadUserCompHeader(ulong &nSize)
 
 
 	// Get unCompressed size
-	nSize = (ulong)bBuffer[4] << 24;				
-	nSize = nSize | (ulong)bBuffer[5] << 16;
-	nSize = nSize | (ulong)bBuffer[6] << 8;	
-	nSize = nSize | (ulong)bBuffer[7];
+	nSize = (u_long)bBuffer[4] << 24;				
+	nSize = nSize | (u_long)bBuffer[5] << 16;
+	nSize = nSize | (u_long)bBuffer[6] << 8;	
+	nSize = nSize | (u_long)bBuffer[7];
 
 	// Terminate ALG string
 	bBuffer[4] = '\0';
@@ -320,11 +320,11 @@ inline void Decompress::MonitorCallback(void)
 
 int Decompress::DecompressLoop(void)
 {
-	ulong	nMaxPos;
+	u_long	nMaxPos;
 	uint	nTemp;
 	uint	nLen;
 	uint	nOffset;
-	ulong	nTempPos;
+	u_long	nTempPos;
 
 	// Perform deCompression until we fill our predicted size (unCompressed size)
 	nMaxPos		= m_nDataSize;
@@ -478,7 +478,7 @@ void Decompress::HuffmanGenerate(HHuffmanDecompNode *HuffTree, uint nAlphabetSiz
 	uint	i, j;
 	uint	nNextBlankEntry;
 	uint	nByte1 = 0, nByte2 = 0;
-	ulong	nByte1Freq, nByte2Freq;
+	u_long	nByte1Freq, nByte2Freq;
 	uint	nParent;
 	uint	nRoot;
 	uint	nEndNode;

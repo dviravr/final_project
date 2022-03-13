@@ -1,0 +1,1 @@
+/usr/bin/clang++-9  -g   CMakeFiles/LZSS_elina.dir/Compress.cpp.o CMakeFiles/LZSS_elina.dir/Decompress.cpp.o CMakeFiles/LZSS_elina.dir/main.cpp.o CMakeFiles/LZSS_elina.dir/Stat.cpp.o  -o LZSS_elina 

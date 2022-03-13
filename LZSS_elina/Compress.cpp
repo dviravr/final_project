@@ -9,6 +9,7 @@
 // #include <windows.h>
 #include "Compress.h"
 #include <codecvt>
+#include <fstream>
 
 ///////////////////////////////////////////////////////////////////////////////
 // GetFileSize()
@@ -20,25 +21,27 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-ulong Compress::GetFileSize(const char *szFile)
+u_long Compress::GetFileSize(const char *szFile)
 {
-	HANDLE	hFile = nullptr;
-	ulong	nSize;
-	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-	std::wstring wide = converter.from_bytes(szFile);
-	LPCWSTR f = wide.c_str();
+	std::ifstream file( szFile, std::ios::binary | std::ios::ate);
+	return file.tellg();
+	// HANDLE	hFile = nullptr;
+	// u_long	nSize;
+	// std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+	// std::wstring wide = converter.from_bytes(szFile);
+	// LPCWSTR f = wide.c_str();
 
 	
-	hFile = CreateFile(f, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	// hFile = CreateFile(f, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
-	if (hFile == INVALID_HANDLE_VALUE )
-		return 0;
+	// if (hFile == INVALID_HANDLE_VALUE )
+	// 	return 0;
 	
-	nSize = ::GetFileSize(hFile, NULL);
+	// nSize = ::GetFileSize(hFile, NULL);
 
-	CloseHandle(hFile);
+	// CloseHandle(hFile);
 
-	return nSize;
+	// return nSize;
 
 } // GetFileSize()
 
@@ -319,8 +322,8 @@ inline void Compress::MonitorCallback(void)
 
 int Compress::CompressLoop(void)
 {
-	ulong	nMaxPos;
-	ulong	nOffset1, nOffset2;
+	u_long	nMaxPos;
+	u_long	nOffset1, nOffset2;
 	uint	nLen1, nLen2;
 	uint	nIncrement;
 	
@@ -409,9 +412,9 @@ int Compress::CompressLoop(void)
 
 inline void Compress::ReadUserData(void)
 {
-	ulong	nBytes;
-	ulong	nLoop;
-	ulong	nUserDataLeft;
+	u_long	nBytes;
+	u_long	nLoop;
+	u_long	nUserDataLeft;
 
 	// Do we need to read in anymore data or are we done?
 	if (m_nUserDataPos >= m_nDataSize)
@@ -622,11 +625,11 @@ void Compress::HuffmanGenerate(HHuffmanNode *HuffTree, HHuffmanOutput *HuffOutpu
 	uint	i, j;
 	uint	nNextBlankEntry;
 	uint	nByte1 = 0, nByte2 = 0;
-	ulong	nByte1Freq, nByte2Freq;
+	u_long	nByte1Freq, nByte2Freq;
 	uint	nParent;
 	uint	nRoot;
 	uint	nEndNode;
-	ulong	nCode, nCodeTemp;
+	u_long	nCode, nCodeTemp;
 
 	// Reset the table so we can search the first set of elements
 	// entries (actual bytes)
@@ -932,17 +935,17 @@ inline void Compress::CompressedStreamWriteOffset(uint nOffset)
 // FindMatches()
 ///////////////////////////////////////////////////////////////////////////////
 
-void Compress::FindMatches(ulong nInitialDataPos, ulong &nOffset, uint &nLen, uint nBestLen)
+void Compress::FindMatches(u_long nInitialDataPos, u_long &nOffset, uint &nLen, uint nBestLen)
 {
 	// m_nDataSize is the same as the end position of our input, so don't go past this boundary...
 
-	ulong	nBestOffset;
+	u_long	nBestOffset;
 	uint	nTempLen;
 	struct	HHash *lpTempHash;
 	uint	nHash;
-	ulong	nPos1, nPos2;
-	ulong	nTempWPos, nDPos;
-//	ulong	nTooOldPos;
+	u_long	nPos1, nPos2;
+	u_long	nTempWPos, nDPos;
+//	u_long	nTooOldPos;
 
 	// Reset all variables
 	nBestOffset = 0;
@@ -1061,7 +1064,7 @@ inline void Compress::HashTableAdd(uint nBytes)
 {
 	struct HHash	*lpTempHash, *lpTempLast;
 	uint				nHash;
-	ulong				nOldestPos;
+	u_long				nOldestPos;
 
 	while (nBytes--)
 	{

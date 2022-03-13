@@ -1,0 +1,8 @@
+*~
+*.a
+*.lo
+*.o
+*.dylib
+
+/text
+/.idea
