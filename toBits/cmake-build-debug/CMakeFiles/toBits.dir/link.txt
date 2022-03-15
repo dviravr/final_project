@@ -1,0 +1,1 @@
+/usr/bin/clang++-9  -g   CMakeFiles/toBits.dir/main.cpp.o  -o toBits 
