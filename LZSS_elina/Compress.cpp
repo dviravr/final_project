@@ -286,7 +286,8 @@ inline void Compress::MonitorCallback(void) {
 ///////////////////////////////////////////////////////////////////////////////
 // CompressLoop()
 ///////////////////////////////////////////////////////////////////////////////
-static auto gen = std::bind(std::uniform_int_distribution<>(0,1),std::default_random_engine());
+
+// static auto gen = std::bind(std::uniform_int_distribution<>(0,1),std::default_random_engine());
 
 int Compress::CompressLoop(void) {
     u_long nMaxPos;
@@ -294,6 +295,8 @@ int Compress::CompressLoop(void) {
     uint nLen1, nLen2;
     uint nIncrement;
 
+    int const ENCRYPTED = 1;
+    std::srand(time(0);
 
     // Loop around until there is no more data, stop matching HASHORDER from the
     // end of the block so that we can remove some overrun code in the loop
@@ -310,8 +313,12 @@ int Compress::CompressLoop(void) {
         // Check for a match at the current position
         FindMatches(m_nDataPos, nOffset1, nLen1, 0);    // Search for matches for current position
 //		nLen1 = 0;
-        int b = gen();
-
+        
+        int b = 0;
+        if (ENCRYPTED) {
+            b = rand() % 2;
+        }
+        
         // Did we get a match?
         if (nLen1) {
             // Do a match at next position to see if it's better?
