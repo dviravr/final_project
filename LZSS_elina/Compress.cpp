@@ -287,16 +287,12 @@ inline void Compress::MonitorCallback(void) {
 // CompressLoop()
 ///////////////////////////////////////////////////////////////////////////////
 
-// static auto gen = std::bind(std::uniform_int_distribution<>(0,1),std::default_random_engine());
-
 int Compress::CompressLoop(void) {
-    u_long nMaxPos;
-    u_long nOffset1, nOffset2;
+    ulong nMaxPos;
+    ulong nOffset1, nOffset2;
     uint nLen1, nLen2;
     uint nIncrement;
 
-    int const ENCRYPTED = 1;
-    std::srand(time(0);
 
     // Loop around until there is no more data, stop matching HASHORDER from the
     // end of the block so that we can remove some overrun code in the loop
@@ -313,40 +309,23 @@ int Compress::CompressLoop(void) {
         // Check for a match at the current position
         FindMatches(m_nDataPos, nOffset1, nLen1, 0);    // Search for matches for current position
 //		nLen1 = 0;
-        
-        int b = 0;
-        if (ENCRYPTED) {
-            b = rand() % 2;
-        }
-        
+
         // Did we get a match?
         if (nLen1) {
             // Do a match at next position to see if it's better?
             FindMatches(m_nDataPos + 1, nOffset2, nLen2, nLen1);
             //nLen2 = 0;
+
             if (nLen2 > (nLen1 + 1)) {
                 // Match at +1 is better, write a literal then this match
                 CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);    // Literal
-
-                if (b) {
-                    CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
-                    CompressedStreamWriteOffset(nOffset2);                // Match offset
-                } else {
-                    CompressedStreamWriteOffset(nOffset2);                // Match offset
-                    CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
-                }
+                CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
+                CompressedStreamWriteOffset(nOffset2);                // Match offset
                 nIncrement = nLen2 + 1;                                // Move forwards matched len
 
             } else {
-                std::cout << "(" << nOffset1 << ", " << nLen1 - MMINMATCHLEN << ")" << std::endl;
-
-                if (b) {
-                    CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
-                    CompressedStreamWriteOffset(nOffset1);// Match offset
-                } else {
-                    CompressedStreamWriteOffset(nOffset1);// Match offset
-                    CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
-                }
+                CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
+                CompressedStreamWriteOffset(nOffset1);// Match offset
                 nIncrement = nLen1;                // Move forwards matched len
             }
         } else {
@@ -369,13 +348,13 @@ int Compress::CompressLoop(void) {
 
     // We will have stopped just short of the end of data because of the way the
     // hashing function/lazy eval needs to work, now output the remaining data as literals
-//    while (m_nDataPos < m_nDataSize) {
-//        ReadUserData();
-//
-//        CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
-//        ++m_nDataPos;
-//        --m_nLookAheadSize;
-//    }
+    while (m_nDataPos < m_nDataSize) {
+        ReadUserData();
+
+        CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
+        ++m_nDataPos;
+        --m_nLookAheadSize;
+    }
 
     CompressedStreamWriteBitsFlush();        // Make sure all bits written
 
@@ -390,9 +369,9 @@ int Compress::CompressLoop(void) {
 ///////////////////////////////////////////////////////////////////////////////
 
 inline void Compress::ReadUserData(void) {
-    u_long nBytes;
-    u_long nLoop;
-    u_long nUserDataLeft;
+    ulong nBytes;
+    ulong nLoop;
+    ulong nUserDataLeft;
 
     // Do we need to read in anymore data or are we done?
     if (m_nUserDataPos >= m_nDataSize)
@@ -588,11 +567,11 @@ void Compress::HuffmanGenerate(HHuffmanNode *HuffTree, HHuffmanOutput *HuffOutpu
     uint i, j;
     uint nNextBlankEntry;
     uint nByte1 = 0, nByte2 = 0;
-    u_long nByte1Freq, nByte2Freq;
+    ulong nByte1Freq, nByte2Freq;
     uint nParent;
     uint nRoot;
     uint nEndNode;
-    u_long nCode, nCodeTemp;
+    ulong nCode, nCodeTemp;
 
     // Reset the table so we can search the first set of elements
     // entries (actual bytes)
@@ -866,16 +845,16 @@ inline void Compress::CompressedStreamWriteOffset(uint nOffset) {
 // FindMatches()
 ///////////////////////////////////////////////////////////////////////////////
 
-void Compress::FindMatches(u_long nInitialDataPos, u_long &nOffset, uint &nLen, uint nBestLen) {
+void Compress::FindMatches(ulong nInitialDataPos, ulong &nOffset, uint &nLen, uint nBestLen) {
     // m_nDataSize is the same as the end position of our input, so don't go past this boundary...
 
-    u_long nBestOffset;
+    ulong nBestOffset;
     uint nTempLen;
     struct HHash *lpTempHash;
     uint nHash;
-    u_long nPos1, nPos2;
-    u_long nTempWPos, nDPos;
-//	u_long	nTooOldPos;
+    ulong nPos1, nPos2;
+    ulong nTempWPos, nDPos;
+//	ulong	nTooOldPos;
 
     // Reset all variables
     nBestOffset = 0;
@@ -986,7 +965,7 @@ void Compress::HashTableInit(void) {
 inline void Compress::HashTableAdd(uint nBytes) {
     struct HHash *lpTempHash, *lpTempLast;
     uint nHash;
-    u_long nOldestPos;
+    ulong nOldestPos;
 
     while (nBytes--) {
 

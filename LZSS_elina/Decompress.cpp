@@ -300,18 +300,10 @@ int Decompress::DecompressLoop(void) {
     uint nOffset;
     u_long nTempPos;
 
-    int const ENCRYPTED = 1;
-    srand(time(0));
-
     // Perform deCompression until we fill our predicted size (unCompressed size)
     nMaxPos = m_nDataSize;
 
     while (m_nDataPos < nMaxPos) {
-        int b = 0;
-        if (ENCRYPTED) {
-            b = rand() % 2;
-        }
-        
         // Read in a literal
         nTemp = CompressedStreamReadLiteral();
 
@@ -322,21 +314,12 @@ int Decompress::DecompressLoop(void) {
             m_bData[m_nDataPos & DATA_MASK] = (u_char) nTemp;
             m_nDataPos++;
             m_nDataUsed++;
-        }
-        else if (b) {
-            // Read the offset
-            nOffset = CompressedStreamReadOffset();
-
-            // Decode (and read more if required) to get the length of the match
-            nLen = CompressedStreamReadLen(nTemp) + MMINMATCHLEN;
-        }          
-        else {
+        } else {
             // Decode (and read more if required) to get the length of the match
             nLen = CompressedStreamReadLen(nTemp) + MMINMATCHLEN;
 
             // Read the offset
             nOffset = CompressedStreamReadOffset();
-        }
 
             // Write out our match
             nTempPos = m_nDataPos - nOffset;

@@ -197,7 +197,7 @@ int main(int argc, char *argv[]) {
         string originalFile = filesArray[i];
         string encodedFile = encodedFilesArray[i];
         string decodedFile = decodedFilesArray[i];
-        if (encode) {
+//        if (encode) {
             start = clock();
             Comproc(oCompress, originalFile, encodedFile);
             end = clock();
@@ -212,7 +212,7 @@ int main(int argc, char *argv[]) {
             printf("compression ratio: %15.2lf%%\n", compressionRatio * 100);
             printf("compression time: %15.2lf sec\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 
-        } else {
+//        } else {
             start = clock();
             Decomproc(oDecompress, encodedFile, decodedFile);
             end = clock();
@@ -220,7 +220,7 @@ int main(int argc, char *argv[]) {
             cout << originalFile.substr(8) << endl;
             printf("\033[0;37m");
             printf("decompression time: %15.2lf sec\n", ((double) (end - start)) / CLOCKS_PER_SEC);
-        }
+//        }
         printf("\n");
     }
 
