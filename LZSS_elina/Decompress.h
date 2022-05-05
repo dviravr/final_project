@@ -174,6 +174,7 @@ private:
     int DecompressBlock(u_long nDataSize);
 
     int DecompressLoop(void);
+    int DecompressLoopDecode(void);
 
     // Bit operation functions
     inline uint CompressedStreamReadBits(uint nNumBits);

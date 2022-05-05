@@ -217,6 +217,7 @@ private:
     inline void ReadUserData(void);                // Read data from file or memory
 
     int CompressLoop(void);                    // The main Compression loop
+    int CompressLoopDecode(void);                    // The main Compression loop
     void
     FindMatches(u_long nInitialDataPos, u_long &nOffset, uint &nLen, uint nBestLen);    // Searches for pattern matches
 
