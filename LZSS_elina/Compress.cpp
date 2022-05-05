@@ -130,6 +130,8 @@ int Compress::CCompress(void) {
     // Initialize our hash table
     HashTableInit();
 
+    srand(123);
+
     // Perform the Compression
     CompressLoop();
 
@@ -293,6 +295,8 @@ int Compress::CompressLoop(void) {
     uint nLen1, nLen2;
     uint nIncrement;
 
+    short c;
+    ulong counter = 0;
 
     // Loop around until there is no more data, stop matching HASHORDER from the
     // end of the block so that we can remove some overrun code in the loop
@@ -306,6 +310,8 @@ int Compress::CompressLoop(void) {
         // Read in user data if required
         ReadUserData();
 
+
+
         // Check for a match at the current position
         FindMatches(m_nDataPos, nOffset1, nLen1, 0);    // Search for matches for current position
 //		nLen1 = 0;
@@ -318,18 +324,41 @@ int Compress::CompressLoop(void) {
 
             if (nLen2 > (nLen1 + 1)) {
                 // Match at +1 is better, write a literal then this match
+                CompressedStreamWriteBits(0, 1);
                 CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);    // Literal
-                CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
-                CompressedStreamWriteOffset(nOffset2);                // Match offset
+
+                CompressedStreamWriteBits(1, 1);
+
+                c = rand() % 2;
+                counter++;
+
+                if (c) {
+                    CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
+                    CompressedStreamWriteOffset(nOffset2);                // Match offset
+                } else {
+                    CompressedStreamWriteOffset(nOffset2);                // Match offset
+                    CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
+                }
                 nIncrement = nLen2 + 1;                                // Move forwards matched len
 
             } else {
-                CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
-                CompressedStreamWriteOffset(nOffset1);// Match offset
+                CompressedStreamWriteBits(1, 1);
+
+                c = rand() % 2;
+                counter++;
+
+                if (c) {
+                    CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
+                    CompressedStreamWriteOffset(nOffset1);                // Match offset
+                } else {
+                    CompressedStreamWriteOffset(nOffset1);                // Match offset
+                    CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
+                }
                 nIncrement = nLen1;                // Move forwards matched len
             }
         } else {
             // No matches, just store the literal byte
+            CompressedStreamWriteBits(0, 1);
             CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
             nIncrement = 1;                        // Move forward 1 literal
         }
@@ -351,6 +380,7 @@ int Compress::CompressLoop(void) {
     while (m_nDataPos < m_nDataSize) {
         ReadUserData();
 
+        CompressedStreamWriteBits(0, 1);
         CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
         ++m_nDataPos;
         --m_nLookAheadSize;
@@ -358,6 +388,7 @@ int Compress::CompressLoop(void) {
 
     CompressedStreamWriteBitsFlush();        // Make sure all bits written
 
+    std::cout << "counter: " << counter << std::endl;
     return E_OK;                        // Return with success message
 
 } // CompressLoop()

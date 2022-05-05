@@ -6,38 +6,10 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Compress.cpp
-cstdio
--
-cmath
--
-random
--
-Compress.h
-/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Compress.h
-codecvt
--
-fstream
--
-iostream
--
-functional
--
-
 /mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Compress.h
 cstring
 -
 iostream
--
-
-/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Decompress.cpp
-stdio.h
--
-math.h
--
-Decompress.h
-/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Decompress.h
-string.h
 -
 
 /mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Decompress.h
