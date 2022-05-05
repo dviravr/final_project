@@ -6,55 +6,43 @@
 
 #IncludeRegexTransform: 
 
+/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Compress.cpp
+cstdio
+-
+cmath
+-
+random
+-
+Compress.h
 /mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Compress.h
-cstring
--
-iostream
--
-
-/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Decompress.h
-cstring
--
-iostream
--
-
-/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Stat.h
-cstdint
--
-cstdlib
+codecvt
 -
 fstream
 -
 iostream
 -
-stdexcept
--
-vector
--
-string
--
-chrono
--
-string
+functional
 -
 
-/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/main.cpp
-stdio.h
--
-codecvt
--
-string
+/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Compress.h
+cstring
 -
 iostream
 -
-Compress.h
-/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Compress.h
+
+/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Decompress.cpp
+stdio.h
+-
+math.h
+-
 Decompress.h
 /mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Decompress.h
-Stat.h
-/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Stat.h
-main.h
-/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/main.h
+string.h
+-
 
-/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/main.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/Decompress.h
+cstring
+-
+iostream
+-
 

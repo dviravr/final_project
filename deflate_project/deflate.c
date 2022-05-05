@@ -1864,8 +1864,19 @@ local block_state deflate_fast(s, flush)
         if (s->match_length >= MIN_MATCH) {
             check_match(s, s->strstart, s->match_start, s->match_length);
 
-            _tr_tally_dist(s, s->strstart - s->match_start,
-                           s->match_length - MIN_MATCH, bflush);
+            uInt length = s->match_length - MIN_MATCH;
+            uInt distance = s->strstart - s->match_start;
+
+            uch len = (uch) (length);
+            ush dist = (ush) (distance);
+            s->d_buf[s->last_lit] = dist;
+            s->l_buf[s->last_lit++] = len;
+            dist--;
+            s->dyn_ltree[_length_code[len] + LITERALS + 1].Freq++;
+            s->dyn_dtree[d_code(dist)].Freq++;
+            bflush = (s->last_lit == s->lit_bufsize - 1);
+//            _tr_tally_dist(s, s->strstart - s->match_start,
+//                           s->match_length - MIN_MATCH, bflush);
 
             s->lookahead -= s->match_length;
 
@@ -1989,8 +2000,21 @@ local block_state deflate_slow(s, flush)
 
             check_match(s, s->strstart-1, s->prev_match, s->prev_length);
 
-            _tr_tally_dist(s, s->strstart -1 - s->prev_match,
-                           s->prev_length - MIN_MATCH, bflush);
+            uInt length = s->prev_length - MIN_MATCH;
+            uInt distance = s->strstart -1 - s->prev_match;
+
+            uch len = (uch) (length);
+            ush dist = (ush) (distance);
+            s->d_buf[s->last_lit] = dist;
+            s->l_buf[s->last_lit++] = len;
+            dist--;
+            s->dyn_ltree[_length_code[len] + LITERALS + 1].Freq++;
+            s->dyn_dtree[d_code(dist)].Freq++;
+            bflush = (s->last_lit == s->lit_bufsize - 1);
+
+
+//            _tr_tally_dist(s, s->strstart -1 - s->prev_match,
+//                           s->prev_length - MIN_MATCH, bflush);
 
             /* Insert in hash table all strings up to the end of the match.
              * strstart-1 and strstart are already inserted. If there is not
@@ -2008,7 +2032,19 @@ local block_state deflate_slow(s, flush)
             s->match_length = MIN_MATCH-1;
             s->strstart++;
 
-            if (bflush) FLUSH_BLOCK(s, 0);
+            if (bflush) {
+//                FLUSH_BLOCK_ONLY(s, 0);
+                _tr_flush_block(s, (s->block_start >= 0L ?
+                                    (charf *) &s->window[(unsigned) s->block_start] :
+                                    (charf *) Z_NULL),
+                                (ulg) ((long) s->strstart - s->block_start),
+                                (0));
+                s->block_start = s->strstart;
+                flush_pending(s->strm);
+                Tracev((stderr, "[FLUSH]"));
+                if (s->strm->avail_out == 0) return (0) ? finish_started : need_more;
+//                FLUSH_BLOCK(s, 0);
+            }
 
         } else if (s->match_available) {
             /* If there was no match at the previous position, output a
@@ -2098,8 +2134,18 @@ local block_state deflate_rle(s, flush)
         /* Emit match if have run of MIN_MATCH or longer, else emit literal */
         if (s->match_length >= MIN_MATCH) {
             check_match(s, s->strstart, s->strstart - 1, s->match_length);
+            uInt distance = 1;
+            uInt length = s->match_length - MIN_MATCH;
 
-            _tr_tally_dist(s, 1, s->match_length - MIN_MATCH, bflush);
+            uch len = (uch) (length);
+            ush dist = (ush) (distance);
+            s->d_buf[s->last_lit] = dist;
+            s->l_buf[s->last_lit++] = len;
+            dist--;
+            s->dyn_ltree[_length_code[len] + LITERALS + 1].Freq++;
+            s->dyn_dtree[d_code(dist)].Freq++;
+            bflush = (s->last_lit == s->lit_bufsize - 1);
+//            _tr_tally_dist(s, 1, s->match_length - MIN_MATCH, bflush);
 
             s->lookahead -= s->match_length;
             s->strstart += s->match_length;

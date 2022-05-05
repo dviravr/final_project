@@ -8,134 +8,134 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug"/>
+				<Option working_dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug"/>
+				<Option working_dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug"/>
+				<Option working_dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="lzss_try">
-				<Option output="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/lzss_try" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug"/>
+				<Option output="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/lzss_try" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/."/>
+					<Add directory="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/."/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 lzss_try"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 lzss_try"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="lzss_try/fast">
-				<Option output="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/lzss_try" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug"/>
+				<Option output="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/lzss_try" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/."/>
+					<Add directory="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/."/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 lzss_try/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/lzss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 lzss_try/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Dvir/dev/AUCourse/final\ project/deflate_project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/adler32.c">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/adler32.c">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/crc32.c">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/crc32.c">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/crc32.h">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/crc32.h">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/deflate.c">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/deflate.c">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/deflate.h">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/deflate.h">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inffast.c">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inffast.c">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inffast.h">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inffast.h">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inffixed.h">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inffixed.h">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inflate.c">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inflate.c">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inflate.h">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inflate.h">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inftrees.c">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inftrees.c">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inftrees.h">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inftrees.h">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/main.c">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/main.c">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/trees.c">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/trees.c">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/trees.h">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/trees.h">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zconf.h">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zconf.h">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zlib.h">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zlib.h">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zutil.c">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zutil.c">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zutil.h">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zutil.h">
 			<Option target="lzss_try"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/CMakeLists.txt">
+		<Unit filename="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

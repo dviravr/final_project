@@ -168,32 +168,32 @@ int main(int argc, char *argv[]) {
     string filesArray[6] = {
 //            "../text/sam/sam_copy.txt",
             "../text/english/english.50MB",
-            "../text/pitches/pitches.50MB",
-            "../text/dna/dna.50MB",
-            "../text/proteins/proteins.50MB",
-            "../text/sources/sources.50MB",
-            "../text/xml/xml.50MB"
+//            "../text/pitches/pitches.50MB",
+//            "../text/dna/dna.50MB",
+//            "../text/proteins/proteins.50MB",
+//            "../text/sources/sources.50MB",
+//            "../text/xml/xml.50MB"
     };
     string decodedFilesArray[6] = {
 //            "../text/sam/decode_output.txt",
             "../text/english/decode_output.txt",
-            "../text/pitches/decode_output.txt",
-            "../text/dna/decode_output.txt",
-            "../text/proteins/decode_output.txt",
-            "../text/sources/decode_output.txt",
-            "../text/xml/decode_output.txt"
+//            "../text/pitches/decode_output.txt",
+//            "../text/dna/decode_output.txt",
+//            "../text/proteins/decode_output.txt",
+//            "../text/sources/decode_output.txt",
+//            "../text/xml/decode_output.txt"
     };
     string encodedFilesArray[6] = {
 //            "../text/sam/encode_output",
             "../text/english/encode_output",
-            "../text/pitches/encode_output",
-            "../text/dna/encode_output",
-            "../text/proteins/encode_output",
-            "../text/sources/encode_output",
-            "../text/xml/encode_output"
+//            "../text/pitches/encode_output",
+//            "../text/dna/encode_output",
+//            "../text/proteins/encode_output",
+//            "../text/sources/encode_output",
+//            "../text/xml/encode_output"
     };
 
-    for (int i = 0; i < 6; ++i) {
+    for (int i = 0; i < 1; ++i) {
         string originalFile = filesArray[i];
         string encodedFile = encodedFilesArray[i];
         string decodedFile = decodedFilesArray[i];

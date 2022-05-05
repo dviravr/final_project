@@ -148,6 +148,8 @@ local void send_all_trees OF((deflate_state *s, int lcodes, int dcodes,
                               int blcodes));
 local void compress_block OF((deflate_state *s, const ct_data *ltree,
                               const ct_data *dtree));
+local void compress_block_offset OF((deflate_state *s, const ct_data *ltree,
+                              const ct_data *dtree));
 local int  detect_data_type OF((deflate_state *s));
 local unsigned bi_reverse OF((unsigned value, int length));
 local void bi_windup      OF((deflate_state *s));
@@ -180,7 +182,7 @@ local void gen_trees_header OF((void));
  * Send a value on a given number of bits.
  * IN assertion: length <= 16 and value fits in length bits.
  */
-#ifdef ZLIB_DEBUG
+//#ifdef ZLIB_DEBUG
 local void send_bits      OF((deflate_state *s, int value, int length));
 
 local void send_bits(s, value, length)
@@ -190,7 +192,7 @@ local void send_bits(s, value, length)
 {
     Tracevv((stderr," l %2d v %4x ", length, value));
     Assert(length > 0 && length <= 15, "invalid length");
-    s->bits_sent += (ulg)length;
+//    s->bits_sent += (ulg)length;
 
     /* If not enough room in bi_buf, use (valid) bits from bi_buf and
      * (16 - bi_valid) bits from value, leaving (width - (16-bi_valid))
@@ -206,22 +208,22 @@ local void send_bits(s, value, length)
         s->bi_valid += length;
     }
 }
-#else /* !ZLIB_DEBUG */
+//#else /* !ZLIB_DEBUG */
 
-#define send_bits(s, value, length) \
-{ int len = length;\
-  if (s->bi_valid > (int)Buf_size - len) {\
-    int val = (int)value;\
-    s->bi_buf |= (ush)val << s->bi_valid;\
-    put_short(s, s->bi_buf);\
-    s->bi_buf = (ush)val >> (Buf_size - s->bi_valid);\
-    s->bi_valid += len - Buf_size;\
-  } else {\
-    s->bi_buf |= (ush)(value) << s->bi_valid;\
-    s->bi_valid += len;\
-  }\
-}
-#endif /* ZLIB_DEBUG */
+//#define send_bits(s, value, length) \
+//{ int len = length;\
+//  if (s->bi_valid > (int)Buf_size - len) {\
+//    int val = (int)value;\
+//    s->bi_buf |= (ush)val << s->bi_valid;\
+//    put_short(s, s->bi_buf);\
+//    s->bi_buf = (ush)val >> (Buf_size - s->bi_valid);\
+//    s->bi_valid += len - Buf_size;\
+//  } else {\
+//    s->bi_buf |= (ush)(value) << s->bi_valid;\
+//    s->bi_valid += len;\
+//  }\
+//}
+//#endif /* ZLIB_DEBUG */
 
 
 /* the arguments must not have side effects */
@@ -978,6 +980,8 @@ void ZLIB_INTERNAL _tr_flush_block(s, buf, stored_len, last)
         send_bits(s, (STATIC_TREES<<1)+last, 3);
         compress_block(s, (const ct_data *)static_ltree,
                        (const ct_data *)static_dtree);
+//        compress_block_offset(s, (const ct_data *)static_ltree,
+//                       (const ct_data *)static_dtree);
 #ifdef ZLIB_DEBUG
         s->compressed_len += 3 + s->static_len;
 #endif
@@ -987,6 +991,8 @@ void ZLIB_INTERNAL _tr_flush_block(s, buf, stored_len, last)
                        max_blindex+1);
         compress_block(s, (const ct_data *)s->dyn_ltree,
                        (const ct_data *)s->dyn_dtree);
+//        compress_block_offset(s, (const ct_data *)s->dyn_ltree,
+//                       (const ct_data *)s->dyn_dtree);
 #ifdef ZLIB_DEBUG
         s->compressed_len += 3 + s->opt_len;
 #endif
@@ -1061,7 +1067,7 @@ int ZLIB_INTERNAL _tr_tally (s, dist, lc)
 /* ===========================================================================
  * Send the block data compressed using the given Huffman trees
  */
-local void compress_block(s, ltree, dtree)
+local void compress_block(s, ltree, dtree) // TODO: this is importent
     deflate_state *s;
     const ct_data *ltree; /* literal tree */
     const ct_data *dtree; /* distance tree */
@@ -1104,6 +1110,54 @@ local void compress_block(s, ltree, dtree)
                "pendingBuf overflow");
 
     } while (lx < s->last_lit);
+
+    send_code(s, END_BLOCK, ltree);
+}
+
+local void compress_block1(s, ltree, dtree) // TODO: this is importent
+        deflate_state *s;
+        const ct_data *ltree; /* literal tree */
+        const ct_data *dtree; /* distance tree */
+{
+    unsigned dist;      /* distance of matched string */
+    int lc;             /* match length or unmatched char (if dist == 0) */
+    unsigned lx = 0;    /* running index in l_buf */
+    unsigned code;      /* the code to send */
+    int extra;          /* number of extra bits to send */
+
+    if (s->last_lit != 0) do {
+            dist = s->d_buf[lx];
+            lc = s->l_buf[lx++];
+            if (dist == 0) {
+                send_code(s, lc, ltree); /* send a literal byte */
+                Tracecv(isgraph(lc), (stderr," '%c' ", lc));
+            } else {
+                dist--; /* dist is now the match distance - 1 */
+                code = d_code(dist);
+                Assert (code < D_CODES, "bad d_code");
+
+                send_code(s, code, dtree);       /* send the distance code */
+                extra = extra_dbits[code];
+                if (extra != 0) {
+                    dist -= (unsigned)base_dist[code];
+                    send_bits(s, dist, extra);   /* send the extra distance bits */
+                }
+
+                /* Here, lc is the match length - MIN_MATCH */
+                code = _length_code[lc];
+                send_code(s, code+LITERALS+1, ltree); /* send the length code */
+                extra = extra_lbits[code];
+                if (extra != 0) {
+                    lc -= base_length[code];
+                    send_bits(s, lc, extra);       /* send the extra length bits */
+                }
+            } /* literal or match pair ? */
+
+            /* Check that the overlay between pending_buf and d_buf+l_buf is ok: */
+            Assert((uInt)(s->pending) < s->lit_bufsize + 2*lx,
+                   "pendingBuf overflow");
+
+        } while (lx < s->last_lit);
 
     send_code(s, END_BLOCK, ltree);
 }

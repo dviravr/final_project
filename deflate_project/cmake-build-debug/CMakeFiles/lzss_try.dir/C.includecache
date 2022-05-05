@@ -6,29 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/gzguts.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/deflate.h
+zutil.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zutil.h
+
+/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/trees.c
+deflate.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/deflate.h
+ctype.h
+-
+trees.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/trees.h
 stdio.h
 -
-zlib.h
-/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zlib.h
-string.h
--
-stdlib.h
--
-limits.h
--
-fcntl.h
--
-stddef.h
--
-io.h
--
-windows.h
--
-errno.h
--
 
-/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zconf.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/trees.h
+
+/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zconf.h
 stddef.h
 -
 windows.h
@@ -46,21 +40,13 @@ unistd.h
 unixio.h
 -
 
-/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zlib.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zlib.h
 zconf.h
-/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zconf.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zconf.h
 
-/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zutil.c
-zutil.h
-/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zutil.h
-gzguts.h
-/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/gzguts.h
-stdlib.h
--
-
-/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zutil.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zutil.h
 zlib.h
-/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zlib.h
+/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zlib.h
 stddef.h
 -
 string.h

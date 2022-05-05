@@ -4,15 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/adler32.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles/lzss_try.dir/adler32.c.o"
-  "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/crc32.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles/lzss_try.dir/crc32.c.o"
-  "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/deflate.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles/lzss_try.dir/deflate.c.o"
-  "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inffast.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles/lzss_try.dir/inffast.c.o"
-  "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inflate.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles/lzss_try.dir/inflate.c.o"
-  "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inftrees.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles/lzss_try.dir/inftrees.c.o"
-  "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/main.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles/lzss_try.dir/main.c.o"
-  "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/trees.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles/lzss_try.dir/trees.c.o"
-  "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zutil.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles/lzss_try.dir/zutil.c.o"
+  "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/adler32.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles/lzss_try.dir/adler32.c.o"
+  "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/crc32.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles/lzss_try.dir/crc32.c.o"
+  "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/deflate.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles/lzss_try.dir/deflate.c.o"
+  "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inffast.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles/lzss_try.dir/inffast.c.o"
+  "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inflate.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles/lzss_try.dir/inflate.c.o"
+  "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inftrees.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles/lzss_try.dir/inftrees.c.o"
+  "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/main.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles/lzss_try.dir/main.c.o"
+  "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/trees.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles/lzss_try.dir/trees.c.o"
+  "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zutil.c" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles/lzss_try.dir/zutil.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

@@ -175,34 +175,37 @@ int main(int argc, char **argv) {
     int ret, encode = 1;
     clock_t start, end;
     char *filesArray[6] = {
-            "../text/pitches/pitches.50MB",
-            "../text/dna/dna.50MB",
-            "../text/english/english.50MB",
-            "../text/proteins/proteins.50MB",
-            "../text/sources/sources.50MB",
-            "../text/xml/xml.50MB"
+            "../text/sam/sam.txt",
+//            "../text/pitches/pitches.50MB",
+//            "../text/dna/dna.50MB",
+//            "../text/english/english.50MB",
+//            "../text/proteins/proteins.50MB",
+//            "../text/sources/sources.50MB",
+//            "../text/xml/xml.50MB"
     };
     char *decodedFilesArray[6] = {
-            "../text/pitches/decode_output",
-            "../text/dna/decode_output",
-            "../text/english/decode_output",
-            "../text/proteins/decode_output",
-            "../text/sources/decode_output",
-            "../text/xml/decode_output"
+            "../text/sam/decode_output",
+//            "../text/pitches/decode_output",
+//            "../text/dna/decode_output",
+//            "../text/english/decode_output",
+//            "../text/proteins/decode_output",
+//            "../text/sources/decode_output",
+//            "../text/xml/decode_output"
     };
     char *encodedFilesArray[6] = {
-            "../text/pitches/encode_output",
-            "../text/dna/encode_output",
-            "../text/english/encode_output",
-            "../text/proteins/encode_output",
-            "../text/sources/encode_output",
-            "../text/xml/encode_output"
+            "../text/sam/encode_output",
+//            "../text/pitches/encode_output",
+//            "../text/dna/encode_output",
+//            "../text/english/encode_output",
+//            "../text/proteins/encode_output",
+//            "../text/sources/encode_output",
+//            "../text/xml/encode_output"
     };
 
     FILE *originalFile, *encodedFile, *decodedFile;
 
-    for (int i = 0; i < 1; ++i) {
-        if (encode) {
+    for (int i = 0; i < 6; ++i) {
+//        if (encode) {
             originalFile = fopen(filesArray[i], "rb");
             encodedFile = fopen(encodedFilesArray[i], "wb");
             start = clock();
@@ -225,7 +228,7 @@ int main(int argc, char **argv) {
 
             fclose(originalFile);
             fclose(encodedFile);
-        } else {
+//        } else {
             encodedFile = fopen(encodedFilesArray[i], "rb");
             decodedFile = fopen(decodedFilesArray[i], "wb");
             start = clock();
@@ -240,7 +243,7 @@ int main(int argc, char **argv) {
 
             fclose(encodedFile);
             fclose(decodedFile);
-        }
+//        }
         printf("\n");
     }
     return ret;

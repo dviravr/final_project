@@ -295,9 +295,7 @@ int Compress::CompressLoopDecode(void) {
     ulong nOffset1, nOffset2;
     uint nLen1, nLen2;
     uint nIncrement;
-
     short c;
-    ulong counter = 0;
 
     // Loop around until there is no more data, stop matching HASHORDER from the
     // end of the block so that we can remove some overrun code in the loop
@@ -331,7 +329,6 @@ int Compress::CompressLoopDecode(void) {
                 CompressedStreamWriteBits(1, 1);
 
                 c = rand() % 2;
-                counter++;
 
                 if (c) {
                     CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
@@ -346,7 +343,6 @@ int Compress::CompressLoopDecode(void) {
                 CompressedStreamWriteBits(1, 1);
 
                 c = rand() % 2;
-                counter++;
 
                 if (c) {
                     CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
@@ -389,7 +385,6 @@ int Compress::CompressLoopDecode(void) {
 
     CompressedStreamWriteBitsFlush();        // Make sure all bits written
 
-    std::cout << "counter: " << counter << std::endl;
     return E_OK;                        // Return with success message
 
 } // CompressLoop()

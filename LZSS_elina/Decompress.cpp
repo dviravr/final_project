@@ -304,7 +304,6 @@ int Decompress::DecompressLoopDecode(void) {
     uint nOffset;
     u_long nTempPos;
     short c;
-    ulong counter = 0;
 
     // Perform deCompression until we fill our predicted size (unCompressed size)
     nMaxPos = m_nDataSize;
@@ -324,7 +323,6 @@ int Decompress::DecompressLoopDecode(void) {
             m_nDataUsed++;
         } else {
             c = rand() % 2;
-            counter++;
 
             if (c) {
                 nTemp = CompressedStreamReadLiteral();
@@ -364,7 +362,6 @@ int Decompress::DecompressLoopDecode(void) {
             return E_ABORTT;
     }
 
-    std::cout << "counter: " << counter << std::endl;
     return E_OK;
 
 } // DecompressLoop()

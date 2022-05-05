@@ -6,5 +6,5 @@ C_FLAGS = -g   -std=gnu11
 
 C_DEFINES = 
 
-C_INCLUDES = -I"/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/." 
+C_INCLUDES = -I"/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/." 
 

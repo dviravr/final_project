@@ -1045,6 +1045,7 @@ int flush;
             if (have >= 6 && left >= 258) {
                 RESTORE();
                 inflate_fast(strm, out);
+//                inflate_fast_offset(strm, out);
                 LOAD();
                 if (state->mode == TYPE)
                     state->back = -1;

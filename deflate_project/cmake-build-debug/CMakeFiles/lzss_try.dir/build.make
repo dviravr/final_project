@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss"
+CMAKE_SOURCE_DIR = "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug"
+CMAKE_BINARY_DIR = "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/lzss_try.dir/depend.make
@@ -59,120 +59,120 @@ include CMakeFiles/lzss_try.dir/flags.make
 
 CMakeFiles/lzss_try.dir/deflate.c.o: CMakeFiles/lzss_try.dir/flags.make
 CMakeFiles/lzss_try.dir/deflate.c.o: ../deflate.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/lzss_try.dir/deflate.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/deflate.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/deflate.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/lzss_try.dir/deflate.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/deflate.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/deflate.c"
 
 CMakeFiles/lzss_try.dir/deflate.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lzss_try.dir/deflate.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/deflate.c" > CMakeFiles/lzss_try.dir/deflate.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/deflate.c" > CMakeFiles/lzss_try.dir/deflate.c.i
 
 CMakeFiles/lzss_try.dir/deflate.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lzss_try.dir/deflate.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/deflate.c" -o CMakeFiles/lzss_try.dir/deflate.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/deflate.c" -o CMakeFiles/lzss_try.dir/deflate.c.s
 
 CMakeFiles/lzss_try.dir/inffast.c.o: CMakeFiles/lzss_try.dir/flags.make
 CMakeFiles/lzss_try.dir/inffast.c.o: ../inffast.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/lzss_try.dir/inffast.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/inffast.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inffast.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/lzss_try.dir/inffast.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/inffast.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inffast.c"
 
 CMakeFiles/lzss_try.dir/inffast.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lzss_try.dir/inffast.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inffast.c" > CMakeFiles/lzss_try.dir/inffast.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inffast.c" > CMakeFiles/lzss_try.dir/inffast.c.i
 
 CMakeFiles/lzss_try.dir/inffast.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lzss_try.dir/inffast.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inffast.c" -o CMakeFiles/lzss_try.dir/inffast.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inffast.c" -o CMakeFiles/lzss_try.dir/inffast.c.s
 
 CMakeFiles/lzss_try.dir/inflate.c.o: CMakeFiles/lzss_try.dir/flags.make
 CMakeFiles/lzss_try.dir/inflate.c.o: ../inflate.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/lzss_try.dir/inflate.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/inflate.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inflate.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/lzss_try.dir/inflate.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/inflate.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inflate.c"
 
 CMakeFiles/lzss_try.dir/inflate.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lzss_try.dir/inflate.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inflate.c" > CMakeFiles/lzss_try.dir/inflate.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inflate.c" > CMakeFiles/lzss_try.dir/inflate.c.i
 
 CMakeFiles/lzss_try.dir/inflate.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lzss_try.dir/inflate.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inflate.c" -o CMakeFiles/lzss_try.dir/inflate.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inflate.c" -o CMakeFiles/lzss_try.dir/inflate.c.s
 
 CMakeFiles/lzss_try.dir/adler32.c.o: CMakeFiles/lzss_try.dir/flags.make
 CMakeFiles/lzss_try.dir/adler32.c.o: ../adler32.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/lzss_try.dir/adler32.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/adler32.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/adler32.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/lzss_try.dir/adler32.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/adler32.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/adler32.c"
 
 CMakeFiles/lzss_try.dir/adler32.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lzss_try.dir/adler32.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/adler32.c" > CMakeFiles/lzss_try.dir/adler32.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/adler32.c" > CMakeFiles/lzss_try.dir/adler32.c.i
 
 CMakeFiles/lzss_try.dir/adler32.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lzss_try.dir/adler32.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/adler32.c" -o CMakeFiles/lzss_try.dir/adler32.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/adler32.c" -o CMakeFiles/lzss_try.dir/adler32.c.s
 
 CMakeFiles/lzss_try.dir/crc32.c.o: CMakeFiles/lzss_try.dir/flags.make
 CMakeFiles/lzss_try.dir/crc32.c.o: ../crc32.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/lzss_try.dir/crc32.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/crc32.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/crc32.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/lzss_try.dir/crc32.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/crc32.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/crc32.c"
 
 CMakeFiles/lzss_try.dir/crc32.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lzss_try.dir/crc32.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/crc32.c" > CMakeFiles/lzss_try.dir/crc32.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/crc32.c" > CMakeFiles/lzss_try.dir/crc32.c.i
 
 CMakeFiles/lzss_try.dir/crc32.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lzss_try.dir/crc32.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/crc32.c" -o CMakeFiles/lzss_try.dir/crc32.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/crc32.c" -o CMakeFiles/lzss_try.dir/crc32.c.s
 
 CMakeFiles/lzss_try.dir/trees.c.o: CMakeFiles/lzss_try.dir/flags.make
 CMakeFiles/lzss_try.dir/trees.c.o: ../trees.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/lzss_try.dir/trees.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/trees.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/trees.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/lzss_try.dir/trees.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/trees.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/trees.c"
 
 CMakeFiles/lzss_try.dir/trees.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lzss_try.dir/trees.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/trees.c" > CMakeFiles/lzss_try.dir/trees.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/trees.c" > CMakeFiles/lzss_try.dir/trees.c.i
 
 CMakeFiles/lzss_try.dir/trees.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lzss_try.dir/trees.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/trees.c" -o CMakeFiles/lzss_try.dir/trees.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/trees.c" -o CMakeFiles/lzss_try.dir/trees.c.s
 
 CMakeFiles/lzss_try.dir/inftrees.c.o: CMakeFiles/lzss_try.dir/flags.make
 CMakeFiles/lzss_try.dir/inftrees.c.o: ../inftrees.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/lzss_try.dir/inftrees.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/inftrees.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inftrees.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/lzss_try.dir/inftrees.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/inftrees.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inftrees.c"
 
 CMakeFiles/lzss_try.dir/inftrees.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lzss_try.dir/inftrees.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inftrees.c" > CMakeFiles/lzss_try.dir/inftrees.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inftrees.c" > CMakeFiles/lzss_try.dir/inftrees.c.i
 
 CMakeFiles/lzss_try.dir/inftrees.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lzss_try.dir/inftrees.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/inftrees.c" -o CMakeFiles/lzss_try.dir/inftrees.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/inftrees.c" -o CMakeFiles/lzss_try.dir/inftrees.c.s
 
 CMakeFiles/lzss_try.dir/main.c.o: CMakeFiles/lzss_try.dir/flags.make
 CMakeFiles/lzss_try.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/lzss_try.dir/main.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/main.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/main.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/lzss_try.dir/main.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/main.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/main.c"
 
 CMakeFiles/lzss_try.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lzss_try.dir/main.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/main.c" > CMakeFiles/lzss_try.dir/main.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/main.c" > CMakeFiles/lzss_try.dir/main.c.i
 
 CMakeFiles/lzss_try.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lzss_try.dir/main.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/main.c" -o CMakeFiles/lzss_try.dir/main.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/main.c" -o CMakeFiles/lzss_try.dir/main.c.s
 
 CMakeFiles/lzss_try.dir/zutil.c.o: CMakeFiles/lzss_try.dir/flags.make
 CMakeFiles/lzss_try.dir/zutil.c.o: ../zutil.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/lzss_try.dir/zutil.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/zutil.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zutil.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/lzss_try.dir/zutil.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lzss_try.dir/zutil.c.o   -c "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zutil.c"
 
 CMakeFiles/lzss_try.dir/zutil.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lzss_try.dir/zutil.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zutil.c" > CMakeFiles/lzss_try.dir/zutil.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zutil.c" > CMakeFiles/lzss_try.dir/zutil.c.i
 
 CMakeFiles/lzss_try.dir/zutil.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lzss_try.dir/zutil.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/zutil.c" -o CMakeFiles/lzss_try.dir/zutil.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/zutil.c" -o CMakeFiles/lzss_try.dir/zutil.c.s
 
 # Object files for target lzss_try
 lzss_try_OBJECTS = \
@@ -200,7 +200,7 @@ lzss_try: CMakeFiles/lzss_try.dir/main.c.o
 lzss_try: CMakeFiles/lzss_try.dir/zutil.c.o
 lzss_try: CMakeFiles/lzss_try.dir/build.make
 lzss_try: CMakeFiles/lzss_try.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking C executable lzss_try"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking C executable lzss_try"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lzss_try.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -213,6 +213,6 @@ CMakeFiles/lzss_try.dir/clean:
 .PHONY : CMakeFiles/lzss_try.dir/clean
 
 CMakeFiles/lzss_try.dir/depend:
-	cd "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug" "/mnt/c/Users/Dvir/dev/AUCourse/final project/lzss/cmake-build-debug/CMakeFiles/lzss_try.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug" "/mnt/c/Users/Dvir/dev/AUCourse/final project/deflate_project/cmake-build-debug/CMakeFiles/lzss_try.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/lzss_try.dir/depend
 
