@@ -300,47 +300,120 @@ int Decompress::DecompressLoop(void) {
     uint nOffset;
     u_long nTempPos;
 
+    bool KEYD = true;
+
     // Perform deCompression until we fill our predicted size (unCompressed size)
     nMaxPos = m_nDataSize;
-
+    //printf("********************************decompress!********************************************\n");
+    int counter = 0;
+    int licounter = 0;
+    //string keyfilename("keyfile.txt");
+    //string s;
+    //FILE* input_file = fopen(keyfilename.c_str(), "r");
+    //FILE* input_file = fopen("keyfile.txt", "r");
+    //if (input_file == nullptr) {
+    //return EXIT_FAILURE;
+    //}
+    //srand(sd);
     while (m_nDataPos < nMaxPos) {
-        // Read in a literal
-        nTemp = CompressedStreamReadLiteral();
-
-        // Was it a literal byte, or a  match len?
-        if (nTemp < HHUFF_LITERAL_LENSTART)    // 0-255 are literals, 256-292 are lengths
-        {
-            // Store the literal byte
-            m_bData[m_nDataPos & DATA_MASK] = (u_char) nTemp;
-            m_nDataPos++;
-            m_nDataUsed++;
-        } else {
-            // Decode (and read more if required) to get the length of the match
-            nLen = CompressedStreamReadLen(nTemp) + MMINMATCHLEN;
-
-            // Read the offset
-            nOffset = CompressedStreamReadOffset();
-
-            // Write out our match
-            nTempPos = m_nDataPos - nOffset;
-            while (nLen) {
-                --nLen;
-                m_bData[m_nDataPos & DATA_MASK] = m_bData[nTempPos & DATA_MASK];
-                nTempPos++;
+        short c = rand() % 2;//getc(input_file);
+        if (!KEYD || (KEYD && c == 0)) {//|| (KEYC && key[loc]) {//no key or key in location is zero
+            // Read in a literal
+            //if key is 0 act normal.
+            //else read char- if 0 than put it back and read literal, else, read (offset and len)
+            nTemp = CompressedStreamReadLiteral();
+            // Was it a literal byte, or a  match len?
+            if (nTemp < HHUFF_LITERAL_LENSTART)    // 0-255 are literals, 256-292 are lengths
+            {
+                licounter++;
+                //printf("l");// iteral% d\n", nTemp);
+                // Store the literal byte
+                m_bData[m_nDataPos & DATA_MASK] = (u_char) nTemp;
                 m_nDataPos++;
                 m_nDataUsed++;
+            } else {
+                // Decode (and read more if required) to get the length of the match
+                nLen = CompressedStreamReadLen(nTemp) + MMINMATCHLEN;
+                // Read the offset
+                nOffset = CompressedStreamReadOffset();
+                //printf("nTemp= %d nLen= %d\n", nTemp, nLen);
+                //I changed the order
+                // Read the offset
+                //nOffset = CompressedStreamReadOffset();
+                // Decode (and read more if required) to get the length of the match
+                //nLen = CompressedStreamReadLen(nTemp) + MMINMATCHLEN;
+                //if (counter < 100) {
+                //printf("len is= %d\n", nLen);
+                //printf("offset is= %d\n", nOffset);
+                //counter++;
+                //}
+                //printf("c");
+                // Write out our match
+                nTempPos = m_nDataPos - nOffset;
+                while (nLen) {
+                    --nLen;
+                    m_bData[m_nDataPos & DATA_MASK] = m_bData[nTempPos & DATA_MASK];
+                    nTempPos++;
+                    m_nDataPos++;
+                    m_nDataUsed++;
+                }
             }
+            // Write it out
+            WriteUserData();
+            MonitorCallback();
+            if (m_bAbortRequested)
+                return E_ABORTT;
+        } else { //the key is 1, we get literal or (1,offset, len)
+            bool is_couple = CompressedStreamReadBits(1); //read one bit
+            if (is_couple) {
+                //I changed the order
+                // Read the offset
+                nOffset = CompressedStreamReadOffset();
+                // Decode (and read more if required) to get the length of the match
+                nTemp = CompressedStreamReadLiteral();
+                nLen = CompressedStreamReadLen(nTemp) + MMINMATCHLEN;
+                //if (counter < 100) {
+                //printf("len is= %d\n", nLen);
+                //printf("offset is= %d\n", nOffset);
+                //counter++;
+                //}
+                //printf("c");
+                // Write out our match
+                nTempPos = m_nDataPos - nOffset;
+                while (nLen) {
+                    --nLen;
+                    m_bData[m_nDataPos & DATA_MASK] = m_bData[nTempPos & DATA_MASK];
+                    nTempPos++;
+                    m_nDataPos++;
+                    m_nDataUsed++;
+                }
+            } else {
+                //return one bit
+                nTemp = CompressedStreamReadLiteral();
+                // Was it a literal byte, or a  match len?
+                if (nTemp < HHUFF_LITERAL_LENSTART)    // 0-255 are literals, 256-292 are lengths
+                {
+                    licounter++;
+                    //printf("l");// iteral% d\n", nTemp);
+                    // Store the literal byte
+                    m_bData[m_nDataPos & DATA_MASK] = (u_char) nTemp;
+                    m_nDataPos++;
+                    m_nDataUsed++;
+                } else {
+                    //printf("ERROR!!!!!!!!!!!");
+                }
+            }
+            // Write it out
+            WriteUserData();
+
+            MonitorCallback();
+            if (m_bAbortRequested)
+                return E_ABORTT;
         }
-
-
-        // Write it out
-        WriteUserData();
-
-        MonitorCallback();
-        if (m_bAbortRequested)
-            return E_ABORTT;
     }
-
+    //fclose(input_file);
+    //printf("\ncounter is %d\n", counter);
+    //printf("literal counter is %d\n", licounter);
     return E_OK;
 
 } // DecompressLoop()

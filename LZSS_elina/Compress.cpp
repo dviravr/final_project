@@ -13,6 +13,9 @@
 #include <fstream>
 #include <iostream>
 #include <functional>
+
+bool KEYC = true;
+
 ///////////////////////////////////////////////////////////////////////////////
 // GetFileSize()
 //
@@ -302,10 +305,12 @@ int Compress::CompressLoop(void) {
     else
         nMaxPos = 0;
 
+    int counter = 0;
     while (m_nDataPos < nMaxPos) {
         // Read in user data if required
         ReadUserData();
-
+        short c = rand() % 2;
+        counter++;
         // Check for a match at the current position
         FindMatches(m_nDataPos, nOffset1, nLen1, 0);    // Search for matches for current position
 //		nLen1 = 0;
@@ -318,19 +323,73 @@ int Compress::CompressLoop(void) {
 
             if (nLen2 > (nLen1 + 1)) {
                 // Match at +1 is better, write a literal then this match
-                CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);    // Literal
-                CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
-                CompressedStreamWriteOffset(nOffset2);                // Match offset
+                /*printf("write the literal = %c\n", m_bData[m_nDataPos & DATA_MASK]);
+                printf("len is= %d\n", nLen2 - MMINMATCHLEN);
+                *///printf("offset is= %d\n", nOffset2);
+
+                if (!KEYC || (KEYC && c == 0)) {// {//no key or key in location is zero
+                    CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);    // Literal
+                } else {
+                    CompressedStreamWriteBits(0, 1);//flag for literal
+                    CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
+                }
+                //add to key counter
+                c = rand() % 2;// getc(input_file);
+                counter++;
+                if (!KEYC || (KEYC && c == 0)) {// {//no key or key in location is zero
+                    //add to key counter
+                    CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
+                    CompressedStreamWriteOffset(nOffset2);            // Match offset
+                } else { //key is 1  we write (1,offset, length)
+                    //add to key counter
+                    //I changed the order!
+                    CompressedStreamWriteBits(1, 1);//write flag for couple
+                    CompressedStreamWriteOffset(nOffset2);                // Match offset
+                    CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
+                }
+                //if (counter < 10000) {
+                //printf("len is= %d\n", nLen2 - MMINMATCHLEN);
+                //printf("offset is= %d\n", nOffset2);
+                //counter++;
+                //}
                 nIncrement = nLen2 + 1;                                // Move forwards matched len
 
             } else {
-                CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
-                CompressedStreamWriteOffset(nOffset1);// Match offset
+                //printf("len is= %d\n", nLen1 - MMINMATCHLEN);
+                //printf("offset is= %d\n", nOffset1);
+                if (!KEYC || (KEYC && c == 0)) {//no key or key in location is zero
+                    //add to key counter
+                    CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
+                    CompressedStreamWriteOffset(nOffset1);// Match offset
+                } else {
+                    //add to key counter
+                    //I changed the order!
+                    CompressedStreamWriteBits(1, 1);//flag for couple
+                    CompressedStreamWriteOffset(nOffset1);// Match offset
+                    CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
+                }
+                //if (counter < 100) {
+                //printf("len is= %d\n", nLen1 - MMINMATCHLEN);
+                //printf("offset is= %d\n", nOffset1);
+                //counter++;
+                //}
+
                 nIncrement = nLen1;                // Move forwards matched len
             }
         } else {
             // No matches, just store the literal byte
-            CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
+            //printf("literal is %c\n", m_bData[m_nDataPos & DATA_MASK]);
+
+            if (!KEYC || (KEYC && c == 0)) {//no key or key in location is zero
+                CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
+            } else {
+                CompressedStreamWriteBits(0, 1);//flag for literal
+                CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
+            }
+
+            //add to key counter
+            //licounter++;
+            //printf("l");// iteral% d\n", m_bData[m_nDataPos & DATA_MASK]);
             nIncrement = 1;                        // Move forward 1 literal
         }
 
