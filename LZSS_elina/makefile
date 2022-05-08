@@ -29,4 +29,4 @@ tidy:
 	clang-tidy $(SOURCES) $(TIDY_FLAGS) --
 
 clean:
-	rm -f $(OBJECTS) *.o main*
+	rm -f $(OBJECTS) *.o main
