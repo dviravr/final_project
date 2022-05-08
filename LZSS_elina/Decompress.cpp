@@ -141,8 +141,7 @@ int Decompress::DDecompress(void) {
     HuffmanInit();
 
     // Do the deCompression
-//    DecompressLoop();
-    DecompressLoopDecode();
+    DecompressLoop();
 
 
     // Free memory used by deCompression
@@ -296,14 +295,13 @@ inline void Decompress::MonitorCallback(void) {
 // DecompressLoop()
 ///////////////////////////////////////////////////////////////////////////////
 
-int Decompress::DecompressLoopDecode(void) {
+int Decompress::DecompressLoop(void) {
     u_long nMaxPos;
     uint nTemp;
-    uint literalOrLen = -1;
+    uint literalOrLen = UINT32_MAX;
     uint nLen;
     uint nOffset;
     u_long nTempPos;
-//    short randomBit = 0;
 
     // Perform deCompression until we fill our predicted size (unCompressed size)
     nMaxPos = m_nDataSize;
@@ -313,7 +311,7 @@ int Decompress::DecompressLoopDecode(void) {
 
         if (m_isEncode) {
             literalOrLen = CompressedStreamReadBits(1);
-            nTemp = -1;
+            nTemp = UINT32_MAX;
         } else {
             nTemp = CompressedStreamReadLiteral();
         }
@@ -327,9 +325,6 @@ int Decompress::DecompressLoopDecode(void) {
             m_nDataPos++;
             m_nDataUsed++;
         } else {
-//            if (m_isEncode)
-//                randomBit = rand() % 2;
-
             if (m_isEncode && rand() % 2) {
                 // Read the offset
                 nOffset = CompressedStreamReadOffset();
@@ -372,57 +367,6 @@ int Decompress::DecompressLoopDecode(void) {
 
 } // DecompressLoop()
 
-int Decompress::DecompressLoop(void) {
-    u_long nMaxPos;
-    uint nTemp;
-    uint nLen;
-    uint nOffset;
-    u_long nTempPos;
-
-    // Perform deCompression until we fill our predicted size (unCompressed size)
-    nMaxPos = m_nDataSize;
-
-    while (m_nDataPos < nMaxPos) {
-        // Read in a literal
-        nTemp = CompressedStreamReadLiteral();
-
-        // Was it a literal byte, or a  match len?
-        if (nTemp < HHUFF_LITERAL_LENSTART)    // 0-255 are literals, 256-292 are lengths
-        {
-            // Store the literal byte
-            m_bData[m_nDataPos & DATA_MASK] = (u_char) nTemp;
-            m_nDataPos++;
-            m_nDataUsed++;
-        } else {
-            // Decode (and read more if required) to get the length of the match
-            nLen = CompressedStreamReadLen(nTemp) + MMINMATCHLEN;
-
-            // Read the offset
-            nOffset = CompressedStreamReadOffset();
-
-            // Write out our match
-            nTempPos = m_nDataPos - nOffset;
-            while (nLen) {
-                --nLen;
-                m_bData[m_nDataPos & DATA_MASK] = m_bData[nTempPos & DATA_MASK];
-                nTempPos++;
-                m_nDataPos++;
-                m_nDataUsed++;
-            }
-        }
-
-
-        // Write it out
-        WriteUserData();
-
-        MonitorCallback();
-        if (m_bAbortRequested)
-            return E_ABORTT;
-    }
-
-    return E_OK;
-
-} // DecompressLoop()
 
 ///////////////////////////////////////////////////////////////////////////////
 // CompressedStreamReadBits()
@@ -447,12 +391,12 @@ inline uint Decompress::CompressedStreamReadBits(uint nNumBits) {
             // Fill the low order 16 bits of our long buffer
 
             if (m_nInputType == HS_COMP_MEM) {
-                m_nCompressedLong = m_nCompressedLong | (m_bUserCompData[m_nUserCompPos++] << 8);
+                m_nCompressedLong = m_nCompressedLong | (uint) (m_bUserCompData[m_nUserCompPos++] << 8);
                 m_nCompressedLong = m_nCompressedLong | m_bUserCompData[m_nUserCompPos++];
             } else {
-                nTemp = fgetc(m_fSrc);
+                nTemp = (uint) fgetc(m_fSrc);
                 m_nCompressedLong = m_nCompressedLong | (nTemp << 8);
-                nTemp = fgetc(m_fSrc);
+                nTemp = (uint) fgetc(m_fSrc);
                 m_nCompressedLong = m_nCompressedLong | nTemp;
                 m_nUserCompPos += 2;            // Still update even though it is a file
             }

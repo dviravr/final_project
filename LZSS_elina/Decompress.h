@@ -108,7 +108,7 @@ public:
 
     void SetOutputFile(const char *szDst) { strcpy(m_szDstFile, szDst); }
 
-    void SetKey(int key) {
+    void SetKey(uint key) {
         m_isEncode = true;
         srand(key);
     }
@@ -180,7 +180,6 @@ private:
     int DecompressBlock(u_long nDataSize);
 
     int DecompressLoop(void);
-    int DecompressLoopDecode(void);
 
     // Bit operation functions
     inline uint CompressedStreamReadBits(uint nNumBits);
