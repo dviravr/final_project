@@ -140,8 +140,6 @@ int Decompress::DDecompress(void) {
     // At the start huffman coding is off
     HuffmanInit();
 
-    srand(123);
-
     // Do the deCompression
 //    DecompressLoop();
     DecompressLoopDecode();
@@ -301,11 +299,11 @@ inline void Decompress::MonitorCallback(void) {
 int Decompress::DecompressLoopDecode(void) {
     u_long nMaxPos;
     uint nTemp;
-    uint literalOrLen;
+    uint literalOrLen = -1;
     uint nLen;
     uint nOffset;
     u_long nTempPos;
-    short randomBit;
+//    short randomBit = 0;
 
     // Perform deCompression until we fill our predicted size (unCompressed size)
     nMaxPos = m_nDataSize;
@@ -313,34 +311,42 @@ int Decompress::DecompressLoopDecode(void) {
     while (m_nDataPos < nMaxPos) {
         // Read in a bit
 
-        literalOrLen = CompressedStreamReadBits(1);
+        if (m_isEncode) {
+            literalOrLen = CompressedStreamReadBits(1);
+            nTemp = -1;
+        } else {
+            nTemp = CompressedStreamReadLiteral();
+        }
 
         // Was it a literal byte, or a  match len?
-        if (!literalOrLen) {  // 0-255 are literals, 256-292 are lengths
+        if ((m_isEncode && literalOrLen == 0) || nTemp < HHUFF_LITERAL_LENSTART) {  // 0-255 are literals, 256-292 are lengths
             // Store the literal byte
-            nTemp = CompressedStreamReadLiteral();
+            if (m_isEncode)
+                nTemp = CompressedStreamReadLiteral();
             m_bData[m_nDataPos & DATA_MASK] = (u_char) nTemp;
             m_nDataPos++;
             m_nDataUsed++;
         } else {
-            randomBit = rand() % 2;
+//            if (m_isEncode)
+//                randomBit = rand() % 2;
 
-            if (randomBit) {
+            if (m_isEncode && rand() % 2) {
+                // Read the offset
+                nOffset = CompressedStreamReadOffset();
+
                 nTemp = CompressedStreamReadLiteral();
 
                 // Decode (and read more if required) to get the length of the match
                 nLen = CompressedStreamReadLen(nTemp) + MMINMATCHLEN;
-
-                // Read the offset
-                nOffset = CompressedStreamReadOffset();
             } else {
-                // Read the offset
-                nOffset = CompressedStreamReadOffset();
-
-                nTemp = CompressedStreamReadLiteral();
+                if (m_isEncode)
+                    nTemp = CompressedStreamReadLiteral();
 
                 // Decode (and read more if required) to get the length of the match
                 nLen = CompressedStreamReadLen(nTemp) + MMINMATCHLEN;
+
+                // Read the offset
+                nOffset = CompressedStreamReadOffset();
             }
 
             // Write out our match
@@ -353,7 +359,6 @@ int Decompress::DecompressLoopDecode(void) {
                 m_nDataUsed++;
             }
         }
-
 
         // Write it out
         WriteUserData();

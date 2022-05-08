@@ -39,9 +39,7 @@ string
 -
 
 /mnt/c/Users/Dvir/dev/AUCourse/final project/LZSS_elina/main.cpp
-stdio.h
--
-codecvt
+cstdio
 -
 string
 -

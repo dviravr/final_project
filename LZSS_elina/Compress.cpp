@@ -292,7 +292,7 @@ int Compress::CompressLoopDecode(void) {
     ulong nOffset1, nOffset2;
     uint nLen1, nLen2;
     uint nIncrement;
-    short randomBit;
+    short randomBit = 0;
 
     // Loop around until there is no more data, stop matching HASHORDER from the
     // end of the block so that we can remove some overrun code in the loop
@@ -316,39 +316,43 @@ int Compress::CompressLoopDecode(void) {
 
             if (nLen2 > (nLen1 + 1)) {
                 // Match at +1 is better, write a literal then this match
-                CompressedStreamWriteBits(0, 1);
-                CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);    // Literal
-
-                CompressedStreamWriteBits(1, 1);
-
-                randomBit = rand() % 2;
-
-                if (randomBit) {
-                    CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
-                    CompressedStreamWriteOffset(nOffset2);                // Match offset
+                if (m_isDecode) {
+                    CompressedStreamWriteBits(0, 1);
+                    CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);    // Literal
+                    CompressedStreamWriteBits(1, 1);
+                    randomBit = rand() % 2;
                 } else {
+                    CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);    // Literal
+                }
+
+                if (m_isDecode && randomBit) {
                     CompressedStreamWriteOffset(nOffset2);                // Match offset
                     CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
+                } else {
+                    CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
+                    CompressedStreamWriteOffset(nOffset2);                // Match offset
                 }
                 nIncrement = nLen2 + 1;                                // Move forwards matched len
 
             } else {
-                CompressedStreamWriteBits(1, 1);
+                if (m_isDecode) {
+                    CompressedStreamWriteBits(1, 1);
+                    randomBit = rand() % 2;
+                }
 
-                randomBit = rand() % 2;
-
-                if (randomBit) {
-                    CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
+                if (m_isDecode && randomBit) {
                     CompressedStreamWriteOffset(nOffset1);                // Match offset
+                    CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
                 } else {
-                    CompressedStreamWriteOffset(nOffset1);                // Match offset
                     CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
+                    CompressedStreamWriteOffset(nOffset1);                // Match offset
                 }
                 nIncrement = nLen1;                // Move forwards matched len
             }
         } else {
             // No matches, just store the literal byte
-            CompressedStreamWriteBits(0, 1);
+            if (m_isDecode)
+                CompressedStreamWriteBits(0, 1);
             CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
             nIncrement = 1;                        // Move forward 1 literal
         }
@@ -370,7 +374,8 @@ int Compress::CompressLoopDecode(void) {
     while (m_nDataPos < m_nDataSize) {
         ReadUserData();
 
-        CompressedStreamWriteBits(0, 1);
+        if (m_isDecode)
+            CompressedStreamWriteBits(0, 1);
         CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
         ++m_nDataPos;
         --m_nLookAheadSize;
@@ -403,13 +408,11 @@ int Compress::CompressLoop(void) {
 
         // Check for a match at the current position
         FindMatches(m_nDataPos, nOffset1, nLen1, 0);    // Search for matches for current position
-//		nLen1 = 0;
 
         // Did we get a match?
         if (nLen1) {
             // Do a match at next position to see if it's better?
             FindMatches(m_nDataPos + 1, nOffset2, nLen2, nLen1);
-            //nLen2 = 0;
 
             if (nLen2 > (nLen1 + 1)) {
                 // Match at +1 is better, write a literal then this match

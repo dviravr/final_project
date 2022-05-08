@@ -6,11 +6,7 @@
 // (c)2002-2003 Jonathan Bennett, jon@hiddensoft.com
 //
 
-#include <stdio.h>
-// #include <conio.h>
-// #include <windows.h>
-// #include <mmsystem.h>
-#include <codecvt>
+#include <cstdio>
 #include <string>
 #include <iostream>
 #include "Compress.h"
@@ -22,9 +18,9 @@ using namespace std;
 ///////////////////////////////////////////////////////////////////////////////
 // CompressMonitorProc() - The callback function
 ///////////////////////////////////////////////////////////////////////////////
-int Decomproc(Decompress &oDecompress, const string &inputf, const string &outputf);
+int Decomproc(Decompress &oDecompress, const string &inputf, const string &outputf, int key);
 
-int Comproc(Compress &oCompress, const string &inputf, const string &outputf, const int key);
+int Comproc(Compress &oCompress, const string &inputf, const string &outputf, int key);
 /*
 int CompressMonitorProc(u_long nBytesIn, u_long nBytesOut, uint nPercentComplete)
 {
@@ -184,7 +180,7 @@ int main(int argc, char *argv[]) {
 //            "../text/xml/decode_output.txt"
     };
     string encodedFilesArray[6] = {
-//            "../text/sam/encode_output",
+//            "../text/sam/encode_output_m",
             "../text/english/encode_output",
 //            "../text/pitches/encode_output",
 //            "../text/dna/encode_output",
@@ -214,7 +210,7 @@ int main(int argc, char *argv[]) {
 
 //        } else {
             start = clock();
-            Decomproc(oDecompress, encodedFile, decodedFile);
+            Decomproc(oDecompress, encodedFile, decodedFile, INT32_MAX);
             end = clock();
             printf("\033[0;32m");
             cout << originalFile.substr(8) << endl;
@@ -274,9 +270,9 @@ int Comproc(Compress &oCompress, const string &inputf, const string &outputf, co
     oCompress.SetInputFile(inputf.c_str());
     oCompress.SetOutputFile(outputf.c_str());
     // oCompress.SetMonitorCallback(&CompressMonitorProc);
-    oCompress.SetCompressionLevel(1);
-    if (key != INT32_MAX)
-        oCompress.SetKey(key);
+    oCompress.SetCompressionLevel(3);
+//    if (key != INT32_MAX)
+//        oCompress.SetKey(key);
     Timer tmer;
     auto nRes = oCompress.CCompress();
 //    auto scnds = tmer.elapsed();
@@ -307,8 +303,8 @@ int Decomproc(Decompress &oDecompress, const string &inputf, const string &outpu
     oDecompress.SetOutputType(HS_COMP_FILE);
     oDecompress.SetInputFile(inputf.c_str());
     oDecompress.SetOutputFile(outputf.c_str());
-    if (key != INT32_MAX)
-        oDecompress.SetKey(key);
+//    if (key != INT32_MAX)
+//        oDecompress.SetKey(key);
     // oDecompress.SetMonitorCallback(&DecompressMonitorProc);
 //    Timer tmer;
     auto nRes = oDecompress.DDecompress();
