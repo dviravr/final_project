@@ -70,6 +70,8 @@ void Decompress::SetDefaults(void) {
 
     m_lpfnMonitor = NULL;                    // The monitor callback function (or NULL)
 
+    m_isEncode = false;
+
 } // SetDefaults()
 
 
@@ -303,7 +305,7 @@ int Decompress::DecompressLoopDecode(void) {
     uint nLen;
     uint nOffset;
     u_long nTempPos;
-    short c;
+    short randomBit;
 
     // Perform deCompression until we fill our predicted size (unCompressed size)
     nMaxPos = m_nDataSize;
@@ -314,17 +316,16 @@ int Decompress::DecompressLoopDecode(void) {
         literalOrLen = CompressedStreamReadBits(1);
 
         // Was it a literal byte, or a  match len?
-        if (!literalOrLen)    // 0-255 are literals, 256-292 are lengths
-        {
+        if (!literalOrLen) {  // 0-255 are literals, 256-292 are lengths
             // Store the literal byte
             nTemp = CompressedStreamReadLiteral();
             m_bData[m_nDataPos & DATA_MASK] = (u_char) nTemp;
             m_nDataPos++;
             m_nDataUsed++;
         } else {
-            c = rand() % 2;
+            randomBit = rand() % 2;
 
-            if (c) {
+            if (randomBit) {
                 nTemp = CompressedStreamReadLiteral();
 
                 // Decode (and read more if required) to get the length of the match

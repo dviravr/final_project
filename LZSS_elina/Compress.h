@@ -137,6 +137,11 @@ public:
         m_nDataSize = nSize;
     }
 
+    void SetKey(int key) {
+        m_isDecode = true;
+        srand(key);
+    }
+
     void SetOutputBuffer(u_char *bBuf) { m_bUserCompData = bBuf; }
 
     void SetCompressionLevel(uint nCompressionLevel);    // Set the hash chain limit
@@ -171,6 +176,8 @@ private:
     u_char *m_bComp;
     u_long m_nCompPos;                            // Temp position holder for internal Compressed data buffer
 
+    // Is Decoding
+    bool m_isDecode;
 
     // Misc
     bool m_bAbortRequested;

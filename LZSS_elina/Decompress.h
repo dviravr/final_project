@@ -108,6 +108,10 @@ public:
 
     void SetOutputFile(const char *szDst) { strcpy(m_szDstFile, szDst); }
 
+    void SetKey(int key) {
+        m_isEncode = true;
+        srand(key);
+    }
     void SetInputBuffer(u_char *bBuf) { m_bUserCompData = bBuf; }
 
     void SetOutputBuffer(u_char *bBuf) { m_bUserData = bBuf; }
@@ -142,6 +146,8 @@ private:
 
     // Misc
     bool m_bAbortRequested;
+
+    bool m_isEncode;
 
     // Temporary variables used for the bit operations
     u_long m_nCompressedLong;                    // Compressed stream temporary 32bit value

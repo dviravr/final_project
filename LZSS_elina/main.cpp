@@ -24,7 +24,7 @@ using namespace std;
 ///////////////////////////////////////////////////////////////////////////////
 int Decomproc(Decompress &oDecompress, const string &inputf, const string &outputf);
 
-int Comproc(Compress &oCompress, const string &inputf, const string &outputf);
+int Comproc(Compress &oCompress, const string &inputf, const string &outputf, const int key);
 /*
 int CompressMonitorProc(u_long nBytesIn, u_long nBytesOut, uint nPercentComplete)
 {
@@ -199,7 +199,7 @@ int main(int argc, char *argv[]) {
         string decodedFile = decodedFilesArray[i];
 //        if (encode) {
             start = clock();
-            Comproc(oCompress, originalFile, encodedFile);
+            Comproc(oCompress, originalFile, encodedFile, INT32_MAX);
             end = clock();
             u_long originalFileSize = getSize(originalFile);
             u_long encodedFileSize = getSize(encodedFile);
@@ -263,7 +263,7 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-int Comproc(Compress &oCompress, const string &inputf, const string &outputf) {
+int Comproc(Compress &oCompress, const string &inputf, const string &outputf, const int key) {
     // How big is the source file?
 //    auto nUnCompressedSize = getSize(inputf);
 //    cout << inputf << "\t";  // " Input file size      :  " << nUnCompressedSize << endl;
@@ -274,7 +274,9 @@ int Comproc(Compress &oCompress, const string &inputf, const string &outputf) {
     oCompress.SetInputFile(inputf.c_str());
     oCompress.SetOutputFile(outputf.c_str());
     // oCompress.SetMonitorCallback(&CompressMonitorProc);
-    oCompress.SetCompressionLevel(3);
+    oCompress.SetCompressionLevel(1);
+    if (key != INT32_MAX)
+        oCompress.SetKey(key);
     Timer tmer;
     auto nRes = oCompress.CCompress();
 //    auto scnds = tmer.elapsed();
@@ -296,7 +298,7 @@ int Comproc(Compress &oCompress, const string &inputf, const string &outputf) {
     return 0;
 }
 
-int Decomproc(Decompress &oDecompress, const string &inputf, const string &outputf) {
+int Decomproc(Decompress &oDecompress, const string &inputf, const string &outputf, const int key) {
     // Do the unCompression
     oDecompress.SetDefaults();
 //    auto nCompressedSize = getSize(inputf);
@@ -305,6 +307,8 @@ int Decomproc(Decompress &oDecompress, const string &inputf, const string &outpu
     oDecompress.SetOutputType(HS_COMP_FILE);
     oDecompress.SetInputFile(inputf.c_str());
     oDecompress.SetOutputFile(outputf.c_str());
+    if (key != INT32_MAX)
+        oDecompress.SetKey(key);
     // oDecompress.SetMonitorCallback(&DecompressMonitorProc);
 //    Timer tmer;
     auto nRes = oDecompress.DDecompress();
