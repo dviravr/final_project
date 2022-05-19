@@ -43,7 +43,8 @@
 
 #define HS_COMP_SafeFree(x) { if (x) free(x); }
 
-
+#define ZERO_BIT 0
+#define ONE_BIT 1
 
 // Alg ID
 #define ALGID            "JB01"                // Algorithm ID (4 bytes)
@@ -230,6 +231,8 @@ private:
 
     // Bit operation functions
     inline void CompressedStreamWriteBits(uint nValue, uint nNumBits);
+
+    inline void CompressedStreamWriteXorBit(uint bit);
 
     void CompressedStreamWriteBitsFlush(void);
 

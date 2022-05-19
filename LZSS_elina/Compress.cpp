@@ -291,7 +291,6 @@ int Compress::CompressLoop(void) {
     ulong nOffset1, nOffset2;
     uint nLen1, nLen2;
     uint nIncrement;
-    short randomBit = 0;
 
     // Loop around until there is no more data, stop matching HASHORDER from the
     // end of the block so that we can remove some overrun code in the loop
@@ -316,9 +315,9 @@ int Compress::CompressLoop(void) {
             if (nLen2 > (nLen1 + 1)) {
                 // Match at +1 is better, write a literal then this match
                 if (m_isDecode) {
-                    CompressedStreamWriteBits(0, 1);
+                    CompressedStreamWriteXorBit(ZERO_BIT);
                     CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);    // Literal
-                    CompressedStreamWriteBits(1, 1);
+                    CompressedStreamWriteXorBit(ONE_BIT);
                 } else {
                     CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);    // Literal
                 }
@@ -334,7 +333,7 @@ int Compress::CompressLoop(void) {
 
             } else {
                 if (m_isDecode)
-                    CompressedStreamWriteBits(1, 1);
+                    CompressedStreamWriteXorBit(ONE_BIT);
 
                 if (m_isDecode && rand() % 2) {
                     CompressedStreamWriteOffset(nOffset1);                // Match offset
@@ -348,7 +347,7 @@ int Compress::CompressLoop(void) {
         } else {
             // No matches, just store the literal byte
             if (m_isDecode)
-                CompressedStreamWriteBits(0, 1);
+                CompressedStreamWriteXorBit(ZERO_BIT);
             CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
             nIncrement = 1;                        // Move forward 1 literal
         }
@@ -371,7 +370,7 @@ int Compress::CompressLoop(void) {
         ReadUserData();
 
         if (m_isDecode)
-            CompressedStreamWriteBits(0, 1);
+            CompressedStreamWriteXorBit(ZERO_BIT);
         CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
         ++m_nDataPos;
         --m_nLookAheadSize;
@@ -383,6 +382,80 @@ int Compress::CompressLoop(void) {
 
 } // CompressLoop()
 
+
+//int Compress::CompressLoop(void) {
+//    ulong nMaxPos;
+//    ulong nOffset1, nOffset2;
+//    uint nLen1, nLen2;
+//    uint nIncrement;
+//
+//
+//    // Loop around until there is no more data, stop matching HASHORDER from the
+//    // end of the block so that we can remove some overrun code in the loop
+//    // +1 is for the lazy eval
+//    if (m_nDataSize >= (HHASHORDER + 1))
+//        nMaxPos = m_nDataSize - (HHASHORDER + 1);
+//    else
+//        nMaxPos = 0;
+//
+//    while (m_nDataPos < nMaxPos) {
+//        // Read in user data if required
+//        ReadUserData();
+//
+//        // Check for a match at the current position
+//        FindMatches(m_nDataPos, nOffset1, nLen1, 0);    // Search for matches for current position
+//
+//        // Did we get a match?
+//        if (nLen1) {
+//            // Do a match at next position to see if it's better?
+//            FindMatches(m_nDataPos + 1, nOffset2, nLen2, nLen1);
+//
+//            if (nLen2 > (nLen1 + 1)) {
+//                // Match at +1 is better, write a literal then this match
+//                CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);    // Literal
+//                CompressedStreamWriteLen(nLen2 - MMINMATCHLEN);    // Match Len
+//                CompressedStreamWriteOffset(nOffset2);                // Match offset
+//                nIncrement = nLen2 + 1;                                // Move forwards matched len
+//
+//            } else {
+//                CompressedStreamWriteLen(nLen1 - MMINMATCHLEN);    // Match Len
+//                CompressedStreamWriteOffset(nOffset1);// Match offset
+//                nIncrement = nLen1;                // Move forwards matched len
+//            }
+//        } else {
+//            // No matches, just store the literal byte
+//            CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
+//            nIncrement = 1;                        // Move forward 1 literal
+//        }
+//
+//        // We have skipped forwards either 1 byte or xxx bytes (if matched) we must now
+//        // add entries in the hash table for all the entries we've skipped
+//        HashTableAdd(nIncrement);            // Hashes at CURRENT POSITION for nIncrement bytes, also deletes old hashes
+//
+//        // Update monitor variables and call user-defined callback
+//        MonitorCallback();
+//        if (m_bAbortRequested)
+//            return E_ABORTT;
+//
+//    } // End while
+//
+//
+//    // We will have stopped just short of the end of data because of the way the
+//    // hashing function/lazy eval needs to work, now output the remaining data as literals
+//    while (m_nDataPos < m_nDataSize) {
+//        ReadUserData();
+//
+//        CompressedStreamWriteLiteral(m_bData[m_nDataPos & DATA_MASK]);
+//        ++m_nDataPos;
+//        --m_nLookAheadSize;
+//    }
+//
+//    CompressedStreamWriteBitsFlush();        // Make sure all bits written
+//
+//    return E_OK;                        // Return with success message
+//
+//} // CompressLoop()
+//
 
 ///////////////////////////////////////////////////////////////////////////////
 // ReadUserData()
@@ -472,6 +545,12 @@ inline void Compress::WriteUserCompData(void) {
 // This equates to a maximum window size of 65535
 //
 ///////////////////////////////////////////////////////////////////////////////
+
+inline void Compress::CompressedStreamWriteXorBit(uint bit) {
+    short randomBit = rand() % 2;
+    short xorBit = ((randomBit || !bit) && (!randomBit || bit)) ? 1 : 0;
+    CompressedStreamWriteBits(xorBit, 1);
+}
 
 inline void Compress::CompressedStreamWriteBits(uint nValue, uint nNumBits) {
     while (nNumBits) {

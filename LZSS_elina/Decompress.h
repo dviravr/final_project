@@ -39,6 +39,8 @@
 
 #define HS_COMP_SafeFree(x) { if (x) free(x); }
 
+#define ZERO_BIT 0
+#define ONE_BIT 1
 
 // Alg ID
 #define ALGID            "JB01"                // Algorithm ID (4 bytes)
@@ -182,6 +184,8 @@ private:
     int DecompressLoop(void);
 
     // Bit operation functions
+    inline uint CompressedStreamReadXorBit(void);
+
     inline uint CompressedStreamReadBits(uint nNumBits);
 
     inline uint CompressedStreamReadLiteral(void);

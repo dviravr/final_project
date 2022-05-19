@@ -310,7 +310,7 @@ int Decompress::DecompressLoop(void) {
         // Read in a bit
 
         if (m_isEncode) {
-            literalOrLen = CompressedStreamReadBits(1);
+            literalOrLen = CompressedStreamReadXorBit();
             nTemp = UINT32_MAX;
         } else {
             nTemp = CompressedStreamReadLiteral();
@@ -366,6 +366,58 @@ int Decompress::DecompressLoop(void) {
     return E_OK;
 
 } // DecompressLoop()
+//
+//int Decompress::DecompressLoop(void) {
+//    u_long nMaxPos;
+//    uint nTemp;
+//    uint nLen;
+//    uint nOffset;
+//    u_long nTempPos;
+//
+//    // Perform deCompression until we fill our predicted size (unCompressed size)
+//    nMaxPos = m_nDataSize;
+//
+//    while (m_nDataPos < nMaxPos) {
+//        // Read in a literal
+//        nTemp = CompressedStreamReadLiteral();
+//
+//        // Was it a literal byte, or a  match len?
+//        if (nTemp < HHUFF_LITERAL_LENSTART)    // 0-255 are literals, 256-292 are lengths
+//        {
+//            // Store the literal byte
+//            m_bData[m_nDataPos & DATA_MASK] = (u_char) nTemp;
+//            m_nDataPos++;
+//            m_nDataUsed++;
+//        } else {
+//            // Decode (and read more if required) to get the length of the match
+//            nLen = CompressedStreamReadLen(nTemp) + MMINMATCHLEN;
+//
+//            // Read the offset
+//            nOffset = CompressedStreamReadOffset();
+//
+//            // Write out our match
+//            nTempPos = m_nDataPos - nOffset;
+//            while (nLen) {
+//                --nLen;
+//                m_bData[m_nDataPos & DATA_MASK] = m_bData[nTempPos & DATA_MASK];
+//                nTempPos++;
+//                m_nDataPos++;
+//                m_nDataUsed++;
+//            }
+//        }
+//
+//
+//        // Write it out
+//        WriteUserData();
+//
+//        MonitorCallback();
+//        if (m_bAbortRequested)
+//            return E_ABORTT;
+//    }
+//
+//    return E_OK;
+//
+//} // DecompressLoop()
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -572,6 +624,11 @@ inline uint Decompress::CompressedStreamReadHuffman(HHuffmanDecompNode *HuffTree
 
 } // CompressedStreamReadHuffman()
 
+inline uint Decompress::CompressedStreamReadXorBit(void) {
+    short randomBit = rand() % 2;
+    uint flagBit = CompressedStreamReadBits(1);
+    return ((randomBit || !flagBit) && (!randomBit || flagBit)) ? 1 : 0;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // CompressedStreamReadLiteral()
