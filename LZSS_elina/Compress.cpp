@@ -548,7 +548,7 @@ inline void Compress::WriteUserCompData(void) {
 
 inline void Compress::CompressedStreamWriteXorBit(uint bit) {
     short randomBit = rand() % 2;
-    short xorBit = ((randomBit || !bit) && (!randomBit || bit)) ? 1 : 0;
+    uint xorBit = ((randomBit || !bit) && (!randomBit || bit)) ? 1 : 0;
     CompressedStreamWriteBits(xorBit, 1);
 }
 
